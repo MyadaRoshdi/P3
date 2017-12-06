@@ -7,7 +7,7 @@
   - git clone https://github.com/MyadaRoshdi/P3
   - cd P3
 2nd step, get the dataset.
-  - My dataset is collected manually from that given [simulator](https://github.com/udacity/self-driving-car-sim), and then augmented with the [Sample training set] (https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip) offered by udacity. More details about how I collected my data is described below.
+  - My dataset is collected manually from that given [simulator](https://github.com/udacity/self-driving-car-sim), and then augmented with the [Sample training set](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip) offered by udacity. More details about how I collected my data is described below.
   
 ---
 
@@ -23,13 +23,17 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
+[image1]: ./examples/cnn-Nvidia-architecture.png "Model Visualization"
+[image2]: ./examples/placeholder.png "model mean error loss"
 [image3]: ./examples/placeholder_small.png "Recovery Image"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
+[image8]: ./examples/placeholder_small.png "Cropped Image"
+[image9]: ./examples/forward_center.jpg "forward center Image"
+[image10]: ./examples/forward_left.jpg "forward left Image"
+[image11]: ./examples/forward_right.jpg "forward right Image"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation. I also organized this report in a form of Questions & Answers which Cover all rubric points. 
@@ -51,7 +55,7 @@ My project includes the following files:
 #### 1.2. Submission includes functional code
 **Question2: Is the code functional?**
 
-Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
+Using the Udacity provided [simulator](https://github.com/udacity/self-driving-car-sim) and my [drive.py](https://github.com/MyadaRoshdi/P3/blob/master/drive.py) file feeding it with my trained model [model.h5]() the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
@@ -66,21 +70,66 @@ The model.py file contains the code for training and saving the convolution neur
 #### 2.1. An appropriate model architecture has been employed
 **Question4: Has an appropriate model architecture been employed for the task?**
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+My model Uses deep convolutional neural network that takes images captured by the 3-cameras in the simulator and returns the steering angles. I used the Nvidia architecture as shown below:
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+![alt text][image1]
+
+ here's a detailed description of the model layers I used:
+
+
+| Layer         		|     Description	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Input         		| 160x320x3 BGR image           | 
+| cropping          | Output 80x320x3               |
+| Lambda            | Normalization                  |
+| Convolution 5x5   | 2x2 stride, depth 24 	|
+| RELU				    	|	Activation											|
+| Convolution 5x5   | 2x2 stride, depth 36 	|
+| RELU				    	|	Activation											|		
+| Convolution 5x5   | 2x2 stride, depth 48 	|
+| RELU				    	|	Activation											|
+| Convolution 5x5   | 2x2 stride, depth 64 	|
+| RELU				    	|	Activation											|
+| Convolution 5x5   | 2x2 stride, depth 64 	|
+| RELU				    	|	Activation											|
+| Flatten   	  	| Flatten  o/p of last conv layer	|				
+| Fully connected		| Dense,  Output = 100    |
+| Fully connected		| Dense,  Output = 50    |
+| Fully connected		| Dense,  Output = 10    |
+| Fully connected		| Dense,  Output = 1    |
+|						|												|
+|						|												|
+ 
+
+
+I used 5- convolutional layers (model.py lines 18-24)  followed a flatten layer, then 4- fully connected layers 
+
+My model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer (code line 18). 
 
 #### 2.2. Attempts to reduce overfitting in the model
 **Question5: Has an attempt been made to reduce overfitting of the model?**
 
 The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 2.3. Model parameter tuning
 **Question6: Have the model parameters been tuned appropriately?**
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+My model used stochastic optimization (Adam optimizer) to reduce the mean squared error on steering angle, so the learning rate was not tuned manually (model.py line 25).
+
+To train the model, I used the following values:
+
+Type of optimizer: AdamOptimizer
+
+The batch size: 150
+
+number of epochs: 50
+
+learning rate: 0.0005
+
+dropout: 0.5
+
 
 #### 2.4. Appropriate training data
 **Question7: Is the training data chosen appropriately?**
@@ -113,7 +162,7 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+Here is a visualization of the architecture
 
 ![alt text][image1]
 
