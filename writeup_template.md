@@ -88,9 +88,9 @@ My model Uses deep convolutional neural network that takes images captured by th
 | RELU				    	|	Activation											|		
 | Convolution 5x5   | 2x2 stride, depth 48 	|
 | RELU				    	|	Activation											|
-| Convolution 5x5   | 2x2 stride, depth 64 	|
+| Convolution 3x3   | 2x2 stride, depth 64 	|
 | RELU				    	|	Activation											|
-| Convolution 5x5   | 2x2 stride, depth 64 	|
+| Convolution 3x3   | 2x2 stride, depth 64 	|
 | RELU				    	|	Activation											|
 | Flatten   	  	| Flatten  o/p of last conv layer	|				
 | Fully connected		| Dense,  Output = 100    |
@@ -122,36 +122,45 @@ To train the model, I used the following values:
 
 Type of optimizer: AdamOptimizer
 
-The batch size: 150
+number of epochs: 3
 
-number of epochs: 50
+steering correction : 0.2 left and 0.2 right
 
-learning rate: 0.0005
 
-dropout: 0.5
 
 
 #### 2.4. Appropriate training data
 **Question7: Is the training data chosen appropriately?**
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road with correction = 0.2
 
 For details about how I created the training data, see the next section. 
+
+So as a **Summary**
+My code is using  Keras with tensorflow, using the follwoing steps:
+
+1) Cropping 60-pixels from the top and 20-pixels from the bottom to not be distracted by un-important details/
+2) Normalizing the images, using lambda layer.
+3) Applying five convolutional layers
+4) Applying four fully-connected layers
+5) Training the network over 40,000 images, 20% is splited as validation dataset, my data collected as described in details in the writeup.md.
 
 ### 3. Model Architecture and Training Strategy
 
 #### 3.1. Solution Design Approach
 **Question8: Is the solution design documented?**
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was to start with the only the suggested [Sample training dataset](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip).
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+My first step was to use a model similar to the  [Modified lenet](https://github.com/MyadaRoshdi/P2/blob/master/LeNet5_Models/2-stage-ConvNet-architecture.png) architecture. I adjusted the i/p and o/p dimensions to use it, I thought to use this model as it was very successful in the traffic signs classifier I build, and it already contains a good number of convolutional layers and fully connected ones. but my car was not doing the expected behavior on the simulator even when I tested on another collected dataset from the simulator.
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+Then I moved to the Nvidia model, which really did a big improvment in the car behavior, but I was still having when the car reaches the bridge, it starts to go outside the road. I started to collect more data and augment with the Sample training dataset. I Also used the hint that "Keep in mind that training images are loaded in BGR colorspace using cv2 while drive.py load images in RGB to predict the steering angles.", so I preprocessed my images before feeding to the model training to meet that.
 
-To combat the overfitting, I modified the model so that ...
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I used the rule of thump of spliting 20% of the training set to validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
-Then I ... 
+To combat the overfitting, I modified the model so that I added dropout layers
+
+Then I re-collected 
 
 The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
 
@@ -160,14 +169,13 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 #### 3.2. Final Model Architecture
 **Question9: Is the model architecture documented?**
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes 
+Look at section 2.1.
 
-Here is a visualization of the architecture
 
-![alt text][image1]
 
 #### 3.3. Creation of the Training Set & Training Process
-**Question10: s the creation of the training dataset and training process documented?**
+**Question10: Is the creation of the training dataset and training process documented?**
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
