@@ -2,8 +2,13 @@
 
 ## Writeup 
 
-### This file is my writeup Report for the Behavioral Cloning Project.
-
+### This file is my writeup report that covers my work for the [Behavioral Cloning Project] (https://github.com/MyadaRoshdi/P3).
+1st step to use my project, download it locally:
+  - git clone https://github.com/MyadaRoshdi/P3
+  - cd P3
+2nd step, get the dataset.
+  - My dataset is collected manually from that given [simulator] (https://github.com/udacity/self-driving-car-sim), and then augmented with the (Sample training set) [https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip] offered by udacity. More details about how I collected my data is described below.
+  
 ---
 
 **Behavioral Cloning Project**
@@ -27,7 +32,7 @@ The goals / steps of this project are the following:
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
 ## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation. I organized this report in a form of Questions & Answers which Cover all rubric points. 
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation. I also organized this report in a form of Questions & Answers which Cover all rubric points. 
 
 ---
 ### 1. Files Submitted & Code Quality
@@ -36,10 +41,12 @@ The goals / steps of this project are the following:
 **Question1: Are all required files submitted?**
 
 My project includes the following files:
-* model.py containing the script to create and train the model
-* drive.py for driving the car in autonomous mode
-* model.h5 containing a trained convolution neural network 
-* writeup_report.md or writeup_report.pdf summarizing the results
+* model.py: containing the script to create and train the model
+* drive.py: a script for driving the car in autonomous mode
+* model.h5: containing a trained convolution neural network 
+* writeup_report.md: summarizing the results
+* Readme.md giving a high level description of the project
+* examples: this folder contains all images used in the writeup_report and Readme files.
 
 #### 1.2. Submission includes functional code
 **Question2: Is the code functional?**
@@ -52,7 +59,7 @@ python drive.py model.h5
 #### 1.3. Submission code is usable and readable
 **Question3: Is the code usable and readable?**
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+The model.py file contains the code for training and saving the convolution neural network, here I used the Nvidia model as shown [here] (https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) . The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
 ### 2. Model Architecture and Training Strategy
 
