@@ -162,7 +162,9 @@ To combat the overfitting, I modified the model so that I added dropout layers
 
 Then I re-collected 
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+I also used the Generators, however I was running all my experiments on a GPU from AWS (g2.2xlarge), I was always running out of space, as my total # of training data after augmentation was 40,984 Image, so Generators was really helpful in that.
+
+The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track to the left, to improve the driving behavior in these cases, I collected more data from the simulator where I can drive my car in the middle for this part and also added some data about recovering from side road.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
@@ -207,3 +209,7 @@ I used this training data for training the model. The validation set helped dete
 **Question11:Is the car able to navigate correctly on test data?**
 
 yes, as shown in the video.mp4, which shows the track1-autonomous drive on a full lap.
+
+
+## Future work
+If I had more time for this project, I would have collect more data from track1 and track2 to generalize my model, also would collect counter clockwise tracks data. I also suggest to use transfer learning, so I can reduce the training time.
