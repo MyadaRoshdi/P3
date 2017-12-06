@@ -38,16 +38,11 @@ The lab enviroment can be created with CarND Term1 Starter Kit. Click [here](htt
 
 
 
-## Details About Files In This Directory
+## How to drive the car in the simulator using my model?
 
 ### `drive.py`
 
-Usage of `drive.py` requires you have saved the trained model as an h5 file, i.e. `model.h5`. See the [Keras documentation](https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model) for how to create this file using the following command:
-```sh
-model.save(filepath)
-```
-
-Once the model has been saved, it can be used with drive.py using this command:
+run `drive.py` using my saved the trained model model.h5 file, i.e.
 
 ```sh
 python drive.py model.h5
