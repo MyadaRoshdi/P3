@@ -2,33 +2,29 @@
 
 **Goals:** The aim of this project is to create an autonomous driving car behaviorial simulation, using Deep machine learning techniques including Convolutional Neural Networks (CNN). The model here is trained and validated using a collected Dataset. After the model is trained, validated and tested, I ran the simulator on my trained model and my car was successfully able to navigate autonoumesly in the center of the required lane, more details about implementation and design is found in the writeup.md.
 
-This is my submission for this project, which is the 2nd project in Self-driving car Nanodegree Program/Term1.
+This is my submission for this project, which is the 3rd project in Self-driving car Nanodegree Program/Term1.
 
-Steps of this project are the following:
-To meet specifications, the project will require submitting five files: 
-* model.py (script used to create and train the model)
-* drive.py (script to drive the car - feel free to modify this file)
-* model.h5 (a trained Keras model)
-* a report writeup file (either markdown or pdf)
-* video.mp4 (a video recording of your vehicle driving autonomously around the track for at least one full lap)
-
-This README file describes how to output the video in the "Details About Files In This Directory" section.
-
-Creating a Great Writeup
+## The Project
 ---
-A great writeup should include the [rubric points](https://review.udacity.com/#!/rubrics/432/view) as well as your description of how you addressed each point.  You should include a detailed description of the code used (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
+## **The steps of this project are the following:**
+* I used the given [simulator](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/6df7ae49-c61c-4bb2-a23e-6527e69209ec/lessons/46a70500-493e-4057-a78e-b3075933709d/concepts/1c9f7e68-3d2c-4313-9c8d-5a9ed42583dc) to collect data of good driving behavior and added it to the Sample training data.
+* I designed, trained and validated the model which predicts a steering angle from image data
+* I used the model to drive the vehicle autonomously around the first track in the simulator. The vehicle should remain on the road for an entire loop around the track.
+* My detailed work could be found in the writeup report
 
-All that said, please be concise!  We're not looking for you to write a book here, just a brief description of how you passed each rubric point, and references to the relevant code :). 
 
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup.
+## **My project submission icludes the following files/folders:** 
+* model.py : script used to create and train the model.
+* drive.py : script to drive the car, (I didn't need to modify this file).
+* model.h5: my trained Keras model.
+* writeup.md: a report writeup file as markdown.
+* video.mp4: a video recording my vehicle driving autonomously around the track for one full lap.
+* examples: This folder includes all images used in the writeup report. 
 
-The Project
----
-The goals / steps of this project are the following:
-* Use the simulator to collect data of good driving behavior 
-* Design, train and validate a model that predicts a steering angle from image data
-* Use the model to drive the vehicle autonomously around the first track in the simulator. The vehicle should remain on the road for an entire loop around the track.
-* Summarize the results with a written report
+
+
+
+
 
 ### Dependencies
 This lab requires:
@@ -37,12 +33,8 @@ This lab requires:
 
 The lab enviroment can be created with CarND Term1 Starter Kit. Click [here](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) for the details.
 
-The following resources can be found in this github repository:
-* drive.py
-* video.py
-* writeup_template.md
 
-The simulator can be downloaded from the classroom. In the classroom, we have also provided sample data that you can optionally use to help train your model.
+
 
 ## Details About Files In This Directory
 
