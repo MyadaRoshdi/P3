@@ -212,7 +212,7 @@ I finally randomly shuffled the data set and put Y% of the data into a validatio
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
-### 4. Sumulation
+### 4. Simulation
 **Question11:Is the car able to navigate correctly on test data?**
 
 yes, as shown in the video.mp4, which shows the track1-autonomous drive on a full lap.
