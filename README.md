@@ -1,10 +1,12 @@
 # Behaviorial Cloning Project
+[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+
 
 **Goals:** The aim of this project is to create an autonomous driving car behaviorial simulation, using Deep machine learning techniques including Convolutional Neural Networks (CNN). The model here is trained and validated using a collected Dataset. After the model is trained, validated and tested, I ran the simulator on my trained model and my car was successfully able to navigate autonoumesly in the center of the required lane, more details about implementation and design is found in the writeup.md.
 
 This is my submission for this project, which is the 3rd project in Self-driving car Nanodegree Program/Term1.
 
-## The Project
+
 ---
 ## **The steps of this project are the following:**
 * I used the given [simulator](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/6df7ae49-c61c-4bb2-a23e-6527e69209ec/lessons/46a70500-493e-4057-a78e-b3075933709d/concepts/1c9f7e68-3d2c-4313-9c8d-5a9ed42583dc) to collect data of good driving behavior and added it to the Sample training data.
