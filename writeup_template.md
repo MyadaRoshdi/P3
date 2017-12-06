@@ -2,12 +2,12 @@
 
 ## Writeup 
 
-### This file is my writeup report that covers my work for the [Behavioral Cloning Project] (https://github.com/MyadaRoshdi/P3).
+### This file is my writeup report that covers my work for the [Behavioral Cloning Project](https://github.com/MyadaRoshdi/P3).
 1st step to use my project, download it locally:
   - git clone https://github.com/MyadaRoshdi/P3
   - cd P3
 2nd step, get the dataset.
-  - My dataset is collected manually from that given [simulator] (https://github.com/udacity/self-driving-car-sim), and then augmented with the (Sample training set) [https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip] offered by udacity. More details about how I collected my data is described below.
+  - My dataset is collected manually from that given [simulator](https://github.com/udacity/self-driving-car-sim), and then augmented with the [Sample training set] (https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip) offered by udacity. More details about how I collected my data is described below.
   
 ---
 
