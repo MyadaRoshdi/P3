@@ -1,6 +1,6 @@
 # Behaviorial Cloning Project
 
-Goals: The aim of this project is to create an autonomous driving car behaviorial simulation, using Deep machine learning techniques including Convolutional Neural Networks (CNN). The model here is trained and validated using a collected Dataset. After the model is trained, validated and tested, I ran the simulator on my trained model and my car was successfully able to navigate autonoumesly in the center of the required lane, more details about implementation and design is found in the writeup.md.
+**Goals:** The aim of this project is to create an autonomous driving car behaviorial simulation, using Deep machine learning techniques including Convolutional Neural Networks (CNN). The model here is trained and validated using a collected Dataset. After the model is trained, validated and tested, I ran the simulator on my trained model and my car was successfully able to navigate autonoumesly in the center of the required lane, more details about implementation and design is found in the writeup.md.
 
 This is my submission for this project, which is the 2nd project in Self-driving car Nanodegree Program/Term1.
 
