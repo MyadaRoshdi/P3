@@ -133,18 +133,11 @@ steering correction : 0.2 left and 0.2 right
 #### 2.4. Appropriate training data
 **Question7: Is the training data chosen appropriately?**
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road with correction = 0.2
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides. I also combined images from  Centeral Camera, left and right Camera with steering angle correction = 0.2.
 
 For details about how I created the training data, see the next section. 
 
-So as a **Summary**
-My code is using  Keras with tensorflow, using the follwoing steps:
 
-1) Cropping 60-pixels from the top and 20-pixels from the bottom to not be distracted by un-important details/
-2) Normalizing the images, using lambda layer.
-3) Applying five convolutional layers
-4) Applying four fully-connected layers
-5) Training the network over 40,000 images, 20% is splited as validation dataset, my data collected as described in details in the writeup.md.
 
 ### 3. Model Architecture and Training Strategy
 
@@ -168,6 +161,19 @@ I also used the Generators, however I was running all my experiments on a GPU fr
 The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track to the left, to improve the driving behavior in these cases, I collected more data from the simulator where I can drive my car in the middle for this part and also added some data about recovering from side road.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+
+####  **Summary**
+My code is using  Keras with tensorflow, using the follwoing steps:
+
+a) Converting images from BGR to RGB
+b) Combined Images from Central, left and right Cameras with steering correction angle = 0.2
+c) I augmented more data, as I used Images from the Centeral Camera, flipping it then reverse the corresponding steering angle (*-1.0).
+d) Cropping 60-pixels from the top and 20-pixels from the bottom to not be distracted by un-important details.
+e) I used Generators, to overcome the space limitation problem
+f) Normalizing the images, using lambda layer.
+g Applying five convolutional layers
+h) Applying four fully-connected layers
+i) Training the network over 40,984 images, 20% is splited as validation dataset, my data collected as described in details in the writeup.md.
 
 #### 3.2. Final Model Architecture
 **Question9: Is the model architecture documented?**
