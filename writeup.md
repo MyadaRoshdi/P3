@@ -30,11 +30,10 @@ The goals / steps of this project are the following:
 [image4]: ./examples/forward_center.jpg "Center Camera Image"
 [image5]: ./examples/forward_left.jpg "Left Camera Image"
 [image6]: ./examples/forward_right.jpg "right Camera Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image7]: ./examples/placeholder_small.png "un-touched Image"
 [image8]: ./examples/placeholder_small.png "Cropped Image"
-[image9]: ./examples/forward_center.jpg "forward center Image"
-[image10]: ./examples/forward_left.jpg "forward left Image"
-[image11]: ./examples/forward_right.jpg "forward right Image"
+[image9]: ./examples/placeholder_small.png "Flipped Image"
+
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation. I also organized this report in a form of Questions & Answers which Cover all rubric points. 
@@ -156,7 +155,17 @@ Training data was chosen to keep the vehicle driving on the road. My data was a 
 
 4) 1- counterclock wise track
 
-I also combined images from  central Camera, left and right Camera with steering angle correction = 0.2. To augment the data , I also flipped images and angles from central camera. For example, here is an image that has then been flipped:I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+I also combined images from  central Camera, left and right Camera with steering angle correction = 0.2. 
+
+To augment the data , I also flipped images and angles from central camera. For example, here is an image that has then been cropped and flipped :
+
+![Original_Untouched_Image][image7]
+
+![Cropped_Image][image8]
+
+![flipped_Image][image9]
+
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 Overall, my datasets sizes are:
 
