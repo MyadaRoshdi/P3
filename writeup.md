@@ -27,9 +27,9 @@ The goals / steps of this project are the following:
 [image1]: ./examples/cnn-Nvidia-architecture.png "Model Visualization"
 [image2]: ./examples/Overfitting.png "Model Overfitting"
 [image3]: ./examples/No-Overfitting.png "Model without Overfitting"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
+[image4]: ./examples/forward_center.jpg "Center Camera Image"
+[image5]: ./examples/forward_left.jpg "Left Camera Image"
+[image6]: ./examples/forward_right.jpg "right Camera Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 [image8]: ./examples/placeholder_small.png "Cropped Image"
 [image9]: ./examples/forward_center.jpg "forward center Image"
@@ -146,9 +146,9 @@ Training data was chosen to keep the vehicle driving on the road. My data was a 
 1) Sample training data supported by project
 
 2) 3- full tracks of center lane driving
- Here is an example image of center lane driving:
+ Here is an example image of forward middle of the lane driving views from Left, center and right Cameras :
 
-![alt text][image2]
+![Left_Camera_View][image4]        ![Left_Camera_View][image4]         ![Left_Camera_View][image4]
 
 3) Recovering from the left and right sides
 
