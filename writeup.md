@@ -25,8 +25,8 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./examples/cnn-Nvidia-architecture.png "Model Visualization"
-[image2]: ./examples/placeholder.png "model mean error loss"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
+[image2]: ./examples/Overfitting.png "Model Overfitting"
+[image3]: ./examples/No-Overfitting.png "Model without Overfitting"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
@@ -118,7 +118,7 @@ Here is the model mean square error(MSE) graph, showing how MSE in validation is
 
 However, you can see in the following graph, how applying L2-regularization enhanced data overfitting
 
-![alt text][image2]
+![alt text][image3]
 
 #### 2.3. Model parameter tuning
 **Question6: Have the model parameters been tuned appropriately?**
