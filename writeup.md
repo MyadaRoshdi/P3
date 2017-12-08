@@ -148,7 +148,7 @@ Training data was chosen to keep the vehicle driving on the road. My data was a 
 2) 3- full tracks of center lane driving
  Here is an example image of forward middle of the lane driving views from Left, center and right Cameras :
 
-![Left_Camera_View][image4]        ![Left_Camera_View][image4]         ![Left_Camera_View][image4]
+![Left_Camera_View][image4]   ![Left_Camera_View][image4]      ![Left_Camera_View][image4]
 
 3) Recovering from the left and right sides
 
