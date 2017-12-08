@@ -110,7 +110,7 @@ My model includes RELU layers to introduce nonlinearity, and the data is normali
 #### 2.2. Attempts to reduce overfitting in the model
 **Question5: Has an attempt been made to reduce overfitting of the model?**
 
-Yes, The model contains L2 regulariztionf after every convolutional layer in order to reduce overfitting (model.py lines 21). 
+Yes, The model contains L2 regulariztion after every convolutional layer in order to reduce overfitting (model.py lines 21). 
 
 Here is the model mean square error(MSE) graph, showing how MSE in validation is much bigger than MSE in training, which means data overfitting:
 
@@ -141,7 +141,7 @@ To train the model, I used the following values:
 #### 2.4. Appropriate training data
 **Question7: Is the training data chosen appropriately?**
 
-Training data was chosen to keep the vehicle driving on the road. My data was a compination of the following:
+Training data was chosen to keep the vehicle driving on the road. My data was a combination of the following:
 
 1) Sample training data supported by project
 
