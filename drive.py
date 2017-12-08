@@ -57,7 +57,7 @@ def telemetry(sid, data):
         throttle = data["throttle"]
         # The current speed of the car
         speed = data["speed"]
-        if (speed <1):
+        if (speed < 1.0):
             speed= 1.5
         # The current image from the center camera of the car
         imgString = data["image"]
