@@ -83,15 +83,15 @@ My model Uses deep convolutional neural network that takes images captured by th
 | Input         		| 160x320x3 BGR image           | 
 | cropping          | Output 80x320x3               |
 | Lambda            | Normalization                  |
-| Convolution 5x5   | 2x2 stride, depth 24 	|
+| Convolution 5x5   | 2x2 stride, depth 24,regularization l2(0.01)  	|
 | RELU				    	|	Activation											|
-| Convolution 5x5   | 2x2 stride, depth 36 	|
+| Convolution 5x5   | 2x2 stride, depth 36, regularization l2(0.01) 	|
 | RELU				    	|	Activation											|		
-| Convolution 5x5   | 2x2 stride, depth 48 	|
+| Convolution 5x5   | 2x2 stride, depth 48, regularization l2(0.01) 	|
 | RELU				    	|	Activation											|
-| Convolution 3x3   | 2x2 stride, depth 64 	|
+| Convolution 3x3   |  depth 64, regularization l2(0.01) 	|
 | RELU				    	|	Activation											|
-| Convolution 3x3   | 2x2 stride, depth 64 	|
+| Convolution 3x3   |  depth 64, regularization l2(0.01) 	|
 | RELU				    	|	Activation											|
 | Flatten   	  	| Flatten  o/p of last conv layer	|				
 | Fully connected		| Dense,  Output = 100    |
@@ -110,9 +110,15 @@ My model includes RELU layers to introduce nonlinearity, and the data is normali
 #### 2.2. Attempts to reduce overfitting in the model
 **Question5: Has an attempt been made to reduce overfitting of the model?**
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+Yes, The model contains L2 regulariztionf after every convolutional layer in order to reduce overfitting (model.py lines 21). 
 
-The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+Here is the model mean square error(MSE) graph, showing how MSE in validation is much bigger than MSE in training, which means data overfitting:
+
+![alt text][image2]
+
+However, you can see in the following graph, how applying L2-regularization enhanced data overfitting
+
+![alt text][image2]
 
 #### 2.3. Model parameter tuning
 **Question6: Have the model parameters been tuned appropriately?**
@@ -121,21 +127,46 @@ My model used stochastic optimization (Adam optimizer) to reduce the mean square
 
 To train the model, I used the following values:
 
-Type of optimizer: AdamOptimizer
+* Type of optimizer: AdamOptimizer
 
-number of epochs: 3
+* number of epochs: 3
 
-steering correction : 0.2 left and 0.2 right
+* steering correction : 0.2 left and 0.2 right
 
+* batch_size = 32
 
+**NOTE**  All parameters data has been chosen empirically.
 
 
 #### 2.4. Appropriate training data
 **Question7: Is the training data chosen appropriately?**
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides. I also combined images from  Centeral Camera, left and right Camera with steering angle correction = 0.2.
+Training data was chosen to keep the vehicle driving on the road. My data was a compination of the following:
 
-For details about how I created the training data, see the next section. 
+1) Sample training data supported by project
+
+2) 3- full tracks of center lane driving
+ Here is an example image of center lane driving:
+
+![alt text][image2]
+
+3) Recovering from the left and right sides
+
+4) 1- counterclock wise track
+
+I also combined images from  central Camera, left and right Camera with steering angle correction = 0.2. To augment the data , I also flipped images and angles from central camera. For example, here is an image that has then been flipped:I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+
+Overall, my datasets sizes are:
+
+- Training dataset size = 39,572 images
+
+- Validation dataset size = 9,896 images
+
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as when I increase, the loss starts to increase, so I stopped by 3-epochs. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+
+**NOTE** Collecting data in this project is really very challenging, specially on my 64-bit windows and using keys, I would suggest to use video games handhelds for more controlling and smooth driving.
 
 
 
@@ -144,28 +175,31 @@ For details about how I created the training data, see the next section.
 #### 3.1. Solution Design Approach
 **Question8: Is the solution design documented?**
 
-The overall strategy for deriving a model architecture was to start with the only the suggested [Sample training dataset](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip).
+The overall strategy for deriving a model architecture was as following:
 
-My first step was to use a model similar to the  [Modified lenet](https://github.com/MyadaRoshdi/P2/blob/master/LeNet5_Models/2-stage-ConvNet-architecture.png) architecture. I adjusted the i/p and o/p dimensions to use it, I thought to use this model as it was very successful in the traffic signs classifier I build, and it already contains a good number of convolutional layers and fully connected ones. but my car was not doing the expected behavior on the simulator even when I tested on another collected dataset from the simulator.
+a) I started first only with  the suggested [Sample training dataset](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip).
 
-Then I moved to the Nvidia model, which really did a big improvment in the car behavior, but I was still having when the car reaches the bridge, it starts to go outside the road. I started to collect more data and augment with the Sample training dataset. I Also used the hint that "Keep in mind that training images are loaded in BGR colorspace using cv2 while drive.py load images in RGB to predict the steering angles.", so I preprocessed my images before feeding to the model training to meet that.
+b) My first step was to use a model similar to the  [Modified lenet](https://github.com/MyadaRoshdi/P2/blob/master/LeNet5_Models/2-stage-ConvNet-architecture.png) architecture. I adjusted the i/p and o/p dimensions to use it, I thought to use this model as it was very successful in the traffic signs classifier I built, and it already contains a good number of convolutional layers and fully connected ones. but my car was not doing the expected behavior on the simulator even when I tested on another collected dataset from the simulator.
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I used the rule of thump of spliting 20% of the training set to validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+c) Then I moved to the Nvidia model, which really did a big improvment in the car behavior, but when I test my car autonomously in the simulator for this trained model and data, it used to stop when the car reaches the bridge.
 
-To combat the overfitting, I modified the model so that I added dropout layers
+d) I started to collect more data and augment with the Sample training dataset. I Also used the hint that "Keep in mind that training images are loaded in BGR colorspace using cv2 while drive.py .", so I preprocessed my images before feeding to the model training, by smooting them then convert to YUV colorspace, and actually I had a big improvement after applying that.
 
-Then I re-collected 
+e) In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I used the rule of thump of spliting 20% of the training set to validation set. I found that the model and data I had gives a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
-I also used the Generators, however I was running all my experiments on a GPU from AWS (g2.2xlarge), I was always running out of space, as my total # of training data after augmentation was 40,984 Image, so Generators was really helpful in that.
+f) To combat the overfitting, I modified the model so that I added L2-regularization, there's no overfitting now anymore. look at section 2.2., for visualization. 
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track to the left, to improve the driving behavior in these cases, I collected more data from the simulator where I can drive my car in the middle for this part and also added some data about recovering from side road.
+g) Now, testing my car on the simulator, then it starts to get out of the road near the end of the track. Then I re-collected some data for good driving at this part, my data collection strategy is descriped in details in section 2.4. . 
+
+h) I also used the Generators, however I was running all my experiments on a GPU from AWS (g2.2xlarge), I was always running out of space. Generators was really helpful in that.
+ 
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 ####  **Summary**
 My code is using  Keras with tensorflow, using the follwoing steps:
 
-a) Converting images from BGR to RGB
+a) Converting images from BGR to YUV
 b) Combined Images from Central, left and right Cameras with steering correction angle = 0.2
 c) I augmented more data, as I used Images from the Centeral Camera, flipping it then reverse the corresponding steering angle (*-1.0).
 d) Cropping 60-pixels from the top and 20-pixels from the bottom to not be distracted by un-important details.
@@ -186,31 +220,8 @@ Look at section 2.1.
 #### 3.3. Creation of the Training Set & Training Process
 **Question10: Is the creation of the training dataset and training process documented?**
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+look at section 2.4. 
 
-![alt text][image2]
-
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
 ### 4. Simulation
 **Question11:Is the car able to navigate correctly on test data?**
@@ -219,4 +230,4 @@ yes, as shown in the video.mp4, which shows the track1-autonomous drive on a ful
 
 
 ## Future work
-If I had more time for this project, I would have collect more data from track1 and track2 to generalize my model, also would collect counter clockwise tracks data. I also suggest to use transfer learning, so I can reduce the training time.
+If I had more time for this project, I would have collect more data from track1 and track2 to generalize my model, also would collect more counter clockwise tracks data. I also suggest to use transfer learning, so I can reduce the training time.
