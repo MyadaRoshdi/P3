@@ -102,14 +102,14 @@ My model Uses deep convolutional neural network that takes images captured by th
  
 
 
-I used 5- convolutional layers (model.py lines 18-24)  followed a flatten layer, then 4- fully connected layers 
+I used 5- convolutional layers (model.py lines 136-147)  followed a flatten layer, then 4- fully connected layers 
 
 My model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer (code line 18). 
 
 #### 2.2. Attempts to reduce overfitting in the model
 **Question5: Has an attempt been made to reduce overfitting of the model?**
 
-Yes, The model contains L2 regulariztion after every convolutional layer in order to reduce overfitting (model.py lines 21). 
+Yes, The model contains L2 regulariztion after every convolutional layer in order to reduce overfitting (model.py lines 136-142). 
 
 Here is the model mean square error(MSE) graph, showing how MSE in validation is much bigger than MSE in training, which means data overfitting:
 
@@ -122,7 +122,7 @@ However, you can see in the following graph, how applying L2-regularization enha
 #### 2.3. Model parameter tuning
 **Question6: Have the model parameters been tuned appropriately?**
 
-My model used stochastic optimization (Adam optimizer) to reduce the mean squared error on steering angle, so the learning rate was not tuned manually (model.py line 25).
+My model used stochastic optimization (Adam optimizer) to reduce the mean squared error on steering angle, so the learning rate was not tuned manually (model.py line 156).
 
 To train the model, I used the following values:
 
@@ -157,15 +157,8 @@ Training data was chosen to keep the vehicle driving on the road. My data was a 
 
 I also combined images from  central Camera, left and right Camera with steering angle correction = 0.2. 
 
-To augment the data , I also flipped images and angles from central camera. For example, here is an image that has then been cropped and flipped :
-
-![Original_Untouched_Image][image7]
-
-![Cropped_Image][image8]
-
-![flipped_Image][image9]
-
-I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+To augment the data , I also flipped images and angles from central camera (model.py lines 84, 85).
+I also randomly shuffled the data set (model.py line 108) and put 20% of the data into a validation set (model.py line 50). 
 
 Overall, my datasets sizes are:
 
@@ -218,12 +211,11 @@ e) I used Generators, to overcome the space limitation problem
 f) Normalizing the images, using lambda layer.
 g Applying five convolutional layers
 h) Applying four fully-connected layers
-i) Training the network over 40,984 images, 20% is splited as validation dataset, my data collected as described in details in the writeup.md.
+i) Training the network over 49,468 images, 20% is splited as validation dataset, my data collected as described in details in the writeup.md.
 
 #### 3.2. Final Model Architecture
 **Question9: Is the model architecture documented?**
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes 
 Look at section 2.1.
 
 
