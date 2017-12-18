@@ -32,7 +32,7 @@ This is my submission for this project, which is the 3rd project in Self-driving
 
 
 ### Dependencies
-This lab requires:
+This project requires:
 
 * [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit)
 
